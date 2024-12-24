@@ -1,0 +1,441 @@
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<title>Tracksolid</title>
+
+<link rel="icon" href="/resource/images/favicon.ico" type="image/x-icon"/> 
+<link rel="stylesheet" href="/resource/css/normalize.css">
+<link rel="stylesheet" href="/resource/css/base.css">
+<link rel="stylesheet" href="/resource/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resource/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resource/css/login.css?ver=4">
+<link rel="stylesheet" href="/resource/css/bootstrapChosen/component-chosen.css">
+
+
+<!--CSS3 Media Queries (for IE 6-8)-->
+<!--[if lte IE 8]>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+<!-- Compatible with HTML5 tags -->
+<script src="/resource/js/jquery-1.8.3.min.js"></script> 
+<script src="/resource/js/bootstrapChosen/chosen.jquery.min.js?ver=1"></script>
+<script src="/resource/js/modernizr-2.8.3.js"></script>
+<script src="/resource/plugins/validate/jquery.validate.js"></script>
+<script src="/resource/plugins/i18n/jquery.i18n.properties.js"></script>
+<script src="/resource/plugins/layer/layer.js"></script>
+<script src="/resource/plugins/validate/additional-methods.js" ></script>
+<script type="text/javascript">
+
+function setJsLanguage(locale){
+	var propertiesObj=null;
+	if(locale){
+		propertiesObj = {
+		    name:"messages", 
+			path:_ctx+"/resource/plugins/i18n/",
+		    mode:"both",
+		    language:locale, 
+		    cache:true,
+		    encoding:"UTF-8",
+		    callback: function() {
+		    }
+		};
+	}
+	jQuery.i18n.properties(propertiesObj);
+}
+
+var locale='en';
+
+setJsLanguage(locale);
+
+</script>
+<style type="text/css">
+	body{
+		font-size: 14px;
+	}
+	.col-lg-3 span{
+		font-size: 14px;
+		
+		color: yellow;
+	}
+	
+	
+	
+	.chosen-results{
+		font-size: 14px;
+	}
+	.col-lg-3{
+		min-width: 180px;
+		margin-top: -15px;
+		margin-left: -15px;
+	}
+</style>
+<script>
+var imgerrorfun = function(){
+		var img = event.srcElement;
+		img.src = 'https://cm-img.tracksolid.com/resource/tracker/domain/logo.png';
+		img.onerror = null;
+		// javascript:this.src='https://cm-img.tracksolid.com/resource/tracker/domain/logo.png'
+}
+</script>
+</head>
+<body class="login-bg" style="
+background-image: url(/resource/images/bg-login.jpg);
+
+">
+	<div class="login">
+		<h1 class="logo-login">
+			
+			
+				<img src="https://cm-img.tracksolid.com/resource/tracker/domain/aa88e6e5fc3545a08cde6b48f8ddd932.png" onerror="imgerrorfun()"
+				width="318" height="81"  alt="Tracker"/>
+			
+		</h1>
+	  	<div>
+	  		<div style="margin-bottom: 40px;">
+			<span class="form-tip pa" id="tipsmsg" style="display:none;">Authentication failed</span>
+	    	</div>
+	    	<div class="form-group form-username">
+		      	<input type="password" style="position:absolute; left:-9999em; top: -9999em" autocomplete="on"/>
+		      	<input type="text" class="form-control username" id="account" onkeyup="onAccountChange();" 
+		      		placeholder="Account"  autocomplete="on" onload="alert(0)">
+	    	</div>
+		    <div class="form-group form-password">
+		      <input type="text" style="display: none;" autocomplete="off" />
+		      <input type="password" id="password" class="form-control password" onpropertychange="onIspassChang();"  
+		      	placeholder="Password"  autocomplete="off"> 
+		    </div>
+		    <div class="form-group form-captcha" style="display:none;white-spacing:nowrap;" id="captcha">
+		      <input type="text" id="validCode" class="form-control" placeholder="Captcha" 
+		      style="width:217px;display:inline-block;" autocomplete="off">
+		      	<img alt="Captcha" title="Refresh" id="img_captcha"
+						onclick="refreshCaptcha();" height="50" width="100" style="display:inline-block;position: absolute;"/>
+		    </div>
+		    <div class="form-checkbox" style="margin-top: -10px">
+		    	<span class="fr">
+		    		<a href="javascript:;" class="js-retrieve-password"  title="Forgot password?">
+		    			Forgot password?
+		    		</a>
+		    		
+
+		    	</span>
+		    	<span class="checkbox pointer checked">
+			         <input type="hidden"   id="ispassChang" value="0">
+			         <input type="checkbox" id="checkbox" name="checkbox">
+			    </span>
+		        <label for="checkbox" id="rememberMe" >&nbsp;&nbsp;Remember me</label>
+		    </div>
+		    
+		<!-- bootstrapChosen -->
+		    <div class="col-lg-3" onchange="languageChange()" style="width: 258px">
+				<select data-placeholder="English" id="languageSelect" class="chosen-select" tabindex="2">
+					<option value=""></option>
+					
+						<option value="en">English</option> <!-- 英国 -->
+						<option value="es">España (Spanish)</option> <!-- 西班牙 -->
+						<option value="pt">Português (Portuguese)</option> <!-- 葡萄牙 -->
+						<option value="pl">Polska (Polish)</option> <!-- 波兰 -->
+						<option value="vi">Việt Nam (Vietnamese)</option> <!-- 越南 -->
+						<option value="de">Deutschland (German)</option> <!-- 德国 -->
+						<option value="ar">عربي (Arabic)</option> <!-- 阿拉伯 -->
+						<option value="ru">Россия (Russian)</option> <!-- 俄罗斯 -->
+						<option value="fa">ایران (Farsi)</option> <!-- 波斯 -->
+						<option value="bn">বাংলা (Bengaki)</option> <!-- 孟加拉 -->
+						<option value="in">Bahasa (Indonesian)</option> <!-- 印尼 -->
+						<option value="th">ภาษาไทย (Thai)</option> <!-- 泰语 -->
+						<option value="it">italiano (Italian)</option> <!-- 意大利 -->
+						<option value="sv">Sverige (Swedish)</option> <!-- 瑞典 -->
+						<option value="fr">Français (Franch)</option> <!-- 法国 -->
+						<option value="lv">latviešu valoda (Latvian)</option> <!-- 拉脱维亚语 -->
+                        <option value="iw">(Herbrew) עִבְרִית</option> <!-- 希伯来语 以色列 -->
+						<option value="my">မြန်မာဘာသာ (Burmese)</option> <!-- 缅甸语 -->
+						<option value="tr">Türkçe(Turkish)</option> <!-- 土耳其语 -->
+						<option value="ro">limba română (Romanian)</option> <!-- 罗马尼亚语 -->
+						<option value="cs">Česky (Czech)</option> <!-- 捷克 -->
+						<option value="sk">Slovensky (Slovak)</option> <!-- 斯洛伐克 -->
+						<option value="ja">日本語 (Japanese)</option> <!-- 日语 -->
+                        <option value="lo">ກະຣຸນາ (Lao)</option> <!-- 老挝 -->
+						<option value="nl">Nederlands (Netherlands)</option> <!-- 荷兰语 -->
+						<option value="da">Dansk (Danish)</option> <!-- 丹麦语 -->
+						<option value="et">Eesti keel (Estonian)</option> <!-- 爱沙尼亚语 -->
+						<option value="mn">Монгол хэл (Mongolian)</option> <!-- 蒙古语 -->
+						<option value="az">Azərbaycan (Azerbaijani)</option> <!-- 阿塞拜疆 -->
+						<option value="zh">简体中文 (Simplified Chinese)</option> <!-- 简体中文 -->
+					
+					
+				</select>
+		    </div>
+           
+           
+			
+			<div style="margin-top:-10px;text-align: right; margin-bottom: 5px">
+				<a href="javascript:iExperience();" class="demo" style="color:yellow" title="Demo">
+					Demo&nbsp;<i class="fa fa-angle-double-right"></i>
+				</a>
+			</div>
+			
+
+
+			<div class="form-group">
+		        <button type="button" id="logins" onclick="login()"  class="btn btn-default btn-block">Login</button>
+		        <button type="button" id="load" disabled="disabled" style="display: none;" class="btn btn-default btn-block" ><i class="fa fa-spinner fa-pulse"></i>&nbsp;Login</button>
+		    </div>
+		</div>
+	  
+	   	<span class="mappin"><i class="shenzhen"></i><i class="beijing"></i> <i class="dubai"></i><i class="canberra"></i><i class="washington"></i><i class="losangeles"></i><i class="santiago"></i></span>
+   	  
+	</div>
+
+	<div class="side-QRcode">
+		<h1><img src="https://cm-img.tracksolid.com/resource/tracker/domain/www.tracksolid.com_qrcode.png" width="115" height="115" onerror="this.style.display='none'"></h1>
+		
+		<p><a href="http://itunes.apple.com/us/app/id1070068294" target="_blank"><img src="/resource/images/Apple-down.jpg" width="115" height="43"></a></p>
+		
+		
+		<p><a href="https://play.google.com/store/apps/details?id=com.jimi.tuqiang.tracksolid" target="_blank"><img src="/resource/images/Android-down.png" width="115" height="43"></a></p>
+		
+	</div>
+	<footer class="footer">
+		<div class="language" >
+			<ul class="list-line ta-c">
+				<li><a style="color: white;" target="_blank" href="/tools/agreements_page?c=1" >Terms of Service | </a></li>
+				<li><a style="color: white" target="_blank" href="/tools/agreements_page?c=2" >Privacy Policy</a></li>
+         	</ul>
+		</div>
+	</footer>
+          
+    <!-- 找回密码 -->
+    <div class="modal fade" id="RetrievePasswordModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Forgot your password </h4>
+                </div>
+                <div class="modal-body">
+                    <form id="validmessage-form" class="form-horizontal form-preset  form-ellipsis p-tb25" action="">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Account：</label>
+                            <div class="col-md-6">
+                                <input type="text" name="forgetPwd_account" placeholder="Enter Login Account" class="form-control">
+                            </div>
+                        </div>
+
+                        
+							
+							
+								<div class="form-group">
+		                            <label class="col-md-4 control-label">Email：</label>
+		                            <div class="col-md-6">
+		                                <input type="text" name="forgetPwd_email" placeholder="Enter Email" class="form-control">
+		                            </div>
+		                        </div>
+							
+						
+						<div class="form-group">
+                            <label class="col-md-4 control-label">Verification Code：</label>
+                            <div class="col-md-3 p-r0 ts_input_left">
+                                <input type="text" name="forgetPwd_validCode" placeholder="please enter verification code" class="form-control">
+                            </div>
+                            <div class="col-md-3 ts_button_right">
+                            	<button type="button" class="btn btn-success btn-block text-ellipsis ts_padding_vifi" id="getValidCodeBtn" onclick="getValidCode(this);">get verification code</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="pwd-form" class="form-horizontal form-preset  form-ellipsis p-tb25" action="">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">New Password：</label>
+                            <div class="col-md-6">
+                                <input type="password" id="forgetPwd_newPwd" name="forgetPwd_newPwd" 
+                                placeholder="New Password"
+                                onkeyup="passwordStrengthAdvise(this);" class="form-control" id="password">
+                           		<div id="password-strength-advise" class="password-strength">
+									<ul class="strength-bar">
+										<li class="first"><span></span></li>
+										<li class="center"><span></span></li>
+										<li class="last"><span></span></li>
+									</ul>
+								</div>
+								<div id="password-strength-weak-advise" class="password-strength weak dn">
+									<ul class="strength-bar">
+										<li class="first"><span></span></li>
+										<li class="center"><span></span></li>
+										<li class="last"><span></span></li>
+									</ul>
+								</div>
+								<div id="password-strength-medium-advise" class="password-strength medium dn">
+									<ul class="strength-bar">
+										<li class="first"><span></span></li>
+										<li class="center"><span></span></li>
+										<li class="last"><span></span></li>
+									</ul>
+								</div>
+								<div id="password-strength-strong-advise" class="password-strength strong dn">
+									<ul class="strength-bar">
+										<li class="first"><span></span></li>
+										<li class="center"><span></span></li>
+										<li class="last"><span></span></li>
+									</ul>
+								</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Confirm Password：</label>
+                            <div class="col-md-6">
+                                <input type="password" name="forgetPwd_newPwd_again" placeholder="Confirm Password" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mw-100 js-forget-password" id="validSmsCode">Next Step</button>
+                    <button type="button" class="btn btn-primary mw-100 js-forget-password" style="display:none;" id="forgetPwdSubmit">Submit</button>
+                    <button type="button" class="btn btn-default mw-100" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- <footer class="footer ta-c">Copyright © jimi 2014-<span class="js-year"></span>. All rights are reserved.</footer> -->
+<div style="position: fixed; left:-9999em; top:0; ">
+<!-- <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261812201'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261812201%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script> -->
+</div>
+
+
+<script src="/resource/js/jquery.cookie.js"></script>
+<!-- 模板渲染 --> 
+<script src="/resource/plugins/artTemplate/template.js"></script> 
+<script src="/resource/plugins/artTemplate/template-plugin.js"></script>
+
+<script type="text/html" id="browserTpl">
+	<div class="browser">
+		<p class="browser-instructions">Old browser detected, for better user experience, please<br>It is recommended to use the following browsers.</p>
+		<div class="browser-list">
+			<a href="http://www.google.cn/chrome/" target="_blank"><img src="/resource/images/browser/chrome.png" width="24" height="24"  alt=""/ class="middle">Download Google Chrome</a>
+			<a href="http://www.mozilla.com/firefox/" target="_blank"><img src="/resource/images/browser/firefox.png" width="24" height="24"  alt=""/ class="middle">Download Firefox</a>
+			<a href="http://www.opera.com/" target="_blank"><img src="/resource/images/browser/opera.png" width="24" height="24"  alt=""/ class="middle">Download Opera Mini</a>
+			<a href="http://www.apple.com.cn/safari/" target="_blank"><img src="/resource/images/browser/safari.png" width="24" height="24"  alt=""/ class="middle">Download Safari</a>
+			<a href="http://windows.microsoft.com/zh-CN/internet-explorer/products/ie/home" target="_blank"><img src="/resource/images/browser/explorer.png" width="24" height="24"  alt=""/ class="middle">Download Internet Explorer.</a> 
+		</div>
+	</div>
+</script>
+<script>
+var projectName = 'TRACKSOLID';
+
+sessionStorage.removeItem('showJump'); // 每次登陆都必须显示是否跳转到分布式
+//浏览器提示
+if($.browser.msie&&$.browser.version<9.0) {
+	$(function(){
+		var html = template('browserTpl');
+		$(".login").append(html);
+		
+	});
+}
+window.onload = function(){
+	$(document).keydown(function(event){ 
+		if(event.keyCode == 13){
+            if($("#load").css('display') === 'block') {
+                return
+            }
+			login();
+		} 
+	});
+	var domainconAttr5 = 'en';
+	var domainImage = 'aa88e6e5fc3545a08cde6b48f8ddd932.png';
+	var domainconAttr7 = '';
+    $('.chosen-select').chosen();
+    $('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+    //先取缓存
+    var lang = $.cookie("locale");
+    Boolean(lang) ? "" : lang = window._language ;
+	if (!lang && lang != _language) {
+		setLoginLanguage(lang);
+	}
+    if(!lang){
+	    //再取后台传递语言
+	    if(_language){
+	    	lang = _language;
+	    }else{
+	    	//最后去表配置默认语言
+	    	if(domainconAttr5){
+	        	lang = domainconAttr5;
+	        }
+	    }
+    }
+    
+    $("#languageSelect").val(lang);
+    $("#languageSelect").trigger("chosen:updated");
+}
+$("#password").on('input',function(e){
+	$("#ispassChang").val("1");
+});
+function onIspassChang(){
+	$("#ispassChang").val("1");
+}
+
+$("#account").on('input',function(e){
+	$("#password").val("");
+});
+function onAccountChange(){
+	if($("#account").val() && oldAccount){
+		if($("#account").val() != oldAccount){
+			$("#password").val("");
+		}
+	}
+}
+
+
+//版权年份
+function setCopyrightYear(){
+	var year = new Date().getFullYear();
+	$("#fullYear").text(year);
+}
+//setCopyrightYear();
+
+
+/* var verification = "Authentication failed";
+var verificationName = "User name doesn't exist";
+var verificationPassword = "Password is not correct.";
+ */
+
+var isNull = "The user name or password cannot be empty.";
+var isError= "Account or password is incorrect.";
+var NoPermissions = "Login denied";
+var accountisNotExist = "Account does not exist.";
+var passwordIsError = "Password is not correct.";
+var validCodeError = "Captcha is incorrect.";
+var inputCaptcha = "Captcha is required.";
+</script>
+<script type="text/javascript" src="/resource/js/login2.js?v=14"></script>
+<script src="/resource/js/modal.js"></script>
+
+	
+
+<script type="text/javascript">
+function languageChange(){
+	var searchVal = $(".chosen-search-input").val();
+	//搜索模式不进行刷新
+	if(!searchVal){
+		var language = $("#languageSelect").val();
+		if(language){
+			setLoginLanguage(language);
+		}
+	}
+}
+</script>
+</body>
+</html>
